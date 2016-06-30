@@ -11,7 +11,7 @@ set encoding=utf8
 
 "设置tab的长度等于4个空格
 set tabstop=4
-
+set expandtab
 "设置缩进长度
 set sw=4
 
@@ -83,7 +83,15 @@ set showmatch
 :inoremap < <><ESC>i
 :inoremap > <c-r>=ClosePair('>')<CR>
 
-
+"""""""""修改终端标题""""""""""""""
+let &titlestring = expand("%")
+if &term == "screen"
+    set t_ts=^[k
+    set t_fs=^[\
+endif
+if &term == "screen" || &term == "xterm"
+    set title
+endif
 
 """""""""""""共用函数"""""""""""""""""
 function! VisualSelection(direction) range
